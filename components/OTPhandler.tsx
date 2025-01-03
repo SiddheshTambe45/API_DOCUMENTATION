@@ -16,11 +16,11 @@ import {
 } from "@/components/ui/input-otp";
 import { useState } from "react";
 import { REGEXP_ONLY_DIGITS_AND_CHARS } from "input-otp";
-import { sendEmailOtp, verifyOtp } from "@/lib/actions/user.actions";
+import { verifyOtp } from "@/lib/actions/user.actions";
 import { useRouter } from "next/navigation";
 
 const OTPhandler = ({
-  email,
+  // email,
   accountID,
 }: {
   email: string;
@@ -45,9 +45,9 @@ const OTPhandler = ({
     }
   };
 
-  const handleResendOTP = async () => {
-    sendEmailOtp({ email });
-  };
+  // const handleResendOTP = async () => {
+  //   sendEmailOtp({ email });
+  // };
 
   return (
     <div>
