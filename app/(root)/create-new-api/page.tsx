@@ -692,51 +692,60 @@ const CreateNewApiDoc = () => {
   };
 
   return (
-    <div className="flex mx-auto max-h-screen">
-      <section className="flex flex-col items-start justify-start w-1/2">
-        <ApiForm form={form} onSubmit={onSubmit} />
-      </section>
-
-      <section className="flex flex-col items-start justify-start w-1/2 p-4">
-        <div className="px-4 flex flex-row justify-between items-center w-full">
-          <h1 className="text-2xl text-slate-700 font-bold">
-            Api Documentation {currentApiIndex + 1} / {apis.length}
-          </h1>
-          <div className="flex space-x-4">
-            <Button onClick={handleCreateNewApi}>Create New API</Button>
-            <Button onClick={generatePdf}>Generate PDF</Button>
-          </div>
+    <div className="xl:w-[1200px] flex justify-start items-start flex-col mx-auto h-screen overflow-auto scroll scroll-m-0 remove-scrollbar">
+      <div className="flex flex-row justify-between items-center w-full p-4">
+        <h1 className="text-3xl text-black-700 font-extrabold">
+          Api Documentation
+        </h1>
+        <div className="flex gap-4 justify-end items-center flex-row">
+          <Button onClick={handleCreateNewApi}>Add New API</Button>
+          <Button onClick={generatePdf}>Generate PDF</Button>
         </div>
-        <br />
-        {/* API Navigation Controls */}
-        <div className="flex justify-between w-full mb-4">
-          <Button
-            disabled={currentApiIndex === 0} // Disable if it's the first API
-            onClick={() => setCurrentApiIndex(currentApiIndex - 1)}
-          >
-            Previous
-          </Button>
-          <Button
-            disabled={currentApiIndex >= apis.length} // Disable if it's the last API
-            onClick={() => setCurrentApiIndex(currentApiIndex + 1)}
-          >
-            Next
-          </Button>
-        </div>
+      </div>
+      <div className="flex justify-between w-full mb-4 p-4 border-b-2 border-slate-500">
+        <Button
+          disabled={currentApiIndex === 0} // Disable if it's the first API
+          onClick={() => setCurrentApiIndex(currentApiIndex - 1)}
+        >
+          Previous
+        </Button>
+        <Button
+          disabled={currentApiIndex >= apis.length} // Disable if it's the last API
+          onClick={() => setCurrentApiIndex(currentApiIndex + 1)}
+        >
+          Next
+        </Button>
+      </div>
 
-        {/* Display the Current API */}
-        {apis.length > 0 && (
-          <div>
-            <h2 className="text-xl font-bold">Created APIs</h2>
-            <ul>
-              <li>
-                <Preview data={apis[currentApiIndex]} />{" "}
-                {/* Show the current API */}
-              </li>
-            </ul>
-          </div>
-        )}
-      </section>
+      <div className="flex justify-around w-full">
+        <section className="flex flex-col items-start justify-start w-1/2">
+          <ApiForm form={form} onSubmit={onSubmit} />
+        </section>
+
+        <section className="flex flex-col items-start justify-start w-1/2 px-4">
+          {/* Display the Current API */}
+          {apis.length > 0 ? (
+            <div>
+              <h2 className="text-xl font-bold px-4">
+                Created APIs: {currentApiIndex + 1} / {apis.length}
+              </h2>
+              <ul>
+                <li>
+                  <Preview data={apis[currentApiIndex]} />{" "}
+                  {/* Show the current API */}
+                </li>
+              </ul>
+            </div>
+          ) : (
+            <div className="flex flex-col items-center justify-start w-full p-7">
+              <h2 className="text-2xl font-bold px-4">No APIs created yet</h2>
+              <p className="text-slate-500 p-4">
+                Start filling the form and submit to see preview.
+              </p>
+            </div>
+          )}
+        </section>
+      </div>
     </div>
   );
 };

@@ -344,7 +344,7 @@ export default function ApiForm1({ form, onSubmit }: ApiFormProps) {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="w-full p-4 flex flex-col gap-2"
+        className="w-full px-4 flex flex-col gap-2"
       >
         <FormField
           control={form.control}
