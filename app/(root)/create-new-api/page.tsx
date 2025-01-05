@@ -527,8 +527,8 @@ const CreateNewApiDoc = () => {
         key: "value",
       },
       resBody: {
-        status: 200,
-        data: {},
+        // status: 200,
+        // data: {},
       },
       reqBody: {},
     },
@@ -683,8 +683,8 @@ const CreateNewApiDoc = () => {
         key: "value",
       },
       resBody: {
-        status: 200,
-        data: {}, // Clear data object inside resBody
+        // status: 200,
+        // data: {}, // Clear data object inside resBody
       },
       reqBody: {},
     });
