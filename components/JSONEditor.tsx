@@ -176,7 +176,7 @@ const JSONEditor = ({ value, handleChange, type }: JSONEditorProps) => {
   const prettifyJSON = () => {
     try {
       const parsedValue = JSON.parse(editedValue); // Parse the JSON string
-      const prettyValue = JSON.stringify(parsedValue, null, 2); // Prettify with 2 spaces
+      const prettyValue = JSON.stringify(parsedValue, null, 4); // Prettify with 2 spaces
       setEditedValue(prettyValue); // Update the textarea with prettified JSON
       handleChange(parsedValue); // Call the parent handler with parsed JSON
     } catch {}

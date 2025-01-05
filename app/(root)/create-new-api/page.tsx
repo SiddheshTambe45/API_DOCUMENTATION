@@ -458,10 +458,10 @@ import jsPDF from "jspdf";
 import { base64Font } from "@/constants/fontFamily";
 
 // Validator for the response body
-const resBodyValidator = z.object({
-  status: z.number(),
-  data: z.union([z.record(z.string()), z.array(z.unknown())]).optional(),
-});
+// const resBodyValidator = z.object({
+//   // status: z.number(),
+//   // data: z.union([z.record(z.string()), z.array(z.unknown())]).optional(),
+// });
 
 const formSchema = z
   .object({
@@ -470,7 +470,7 @@ const formSchema = z
     description: z.string(),
     method: z.enum(["GET", "POST", "PUT", "PATCH", "DELETE"]),
     reqParams: z.record(z.string()).optional(),
-    resBody: resBodyValidator,
+    resBody: z.union([z.record(z.unknown()), z.array(z.unknown())]).optional(), //resBodyValidator,
     reqBody: z.union([z.record(z.unknown()), z.array(z.unknown())]).optional(),
   })
   .refine(
@@ -497,6 +497,7 @@ const CreateNewApiDoc = () => {
 
   const onSubmit = (values: FormData) => {
     // Add the current form values to the apiDocs array
+
     setApis((prevApiDocs: FormData[]) => [...prevApiDocs, values]);
 
     // Reset form after submission to clear the inputs
@@ -509,8 +510,8 @@ const CreateNewApiDoc = () => {
         key: "value",
       },
       resBody: {
-        status: 200,
-        data: {},
+        // status: 200,
+        // data: {},
       },
       reqBody: {},
     });
@@ -538,7 +539,13 @@ const CreateNewApiDoc = () => {
     const pdf = new jsPDF();
     // Add the font to the VFS
     pdf.addFileToVFS("SFMono-Regular.ttf", base64Font);
-    let yPosition = 10; // Starting position for the content
+
+    // Add a header with a clickable link to ApiWrite
+    pdf.setFontSize(14);
+    pdf.setFont("helvetica", "bold");
+    pdf.text("Generated with the help of ApiWrite", 10, 10);
+
+    let yPosition = 25; // Starting position for the content //10
     const pageHeight = pdf.internal.pageSize.height;
 
     // Utility function to check and add new page if overflow occurs
