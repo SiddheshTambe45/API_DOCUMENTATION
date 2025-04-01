@@ -10,3 +10,7 @@ export const parseStringify = (value: unknown) => {
 
   return JSON.parse(JSON.stringify(value));
 };
+
+export const helloWorld = () => {
+  return "Hello World !!!";
+};
