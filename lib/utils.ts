@@ -14,3 +14,7 @@ export const parseStringify = (value: unknown) => {
 export const helloWorld = () => {
   return "Hello World !!!";
 };
+
+export const hello = () => {
+  return "Hello World !!!";
+};
