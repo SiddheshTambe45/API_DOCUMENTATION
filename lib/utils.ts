@@ -18,3 +18,7 @@ export const helloWorld = () => {
 export const hello = () => {
   return "Hello World !!!";
 };
+
+export const hellohello = () => {
+  return "Hello World !!!";
+};
